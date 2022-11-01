@@ -16,21 +16,23 @@ func NewAuthorRepository(db *gorm.DB) AuthorRepository {
 }
 
 func (repo *authorConnection) GetAll() ([]models.Author, error) {
-
+	var authors []models.Author
+	return authors, nil
 }
 
-func (repo *authorConnection) GetById(AuthorId int) (models.Author, error) {
-
+func (repo *authorConnection) GetById(authorId int) (models.Author, error) {
+	var author models.Author
+	return author, nil
 }
 
-func (repo *authorConnection) Create(Author models.Author) (models.Author, error) {
-
+func (repo *authorConnection) Create(author models.Author) (models.Author, error) {
+	return author, nil
 }
 
-func (repo *authorConnection) Update(Author models.Author) (models.Author, error) {
-
+func (repo *authorConnection) Update(author models.Author) (models.Author, error) {
+	return author, nil
 }
 
-func (repo *authorConnection) Delete(Author models.Author) error {
-
+func (repo *authorConnection) Delete(author models.Author) error {
+	return nil
 }

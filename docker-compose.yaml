@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: mysql
+    image: mysql:8.0.31
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=fiber_docker
+    networks:
+      - fiber
+    volumes:
+      - /home/dimas/.mysql-data:/var/lib/mysql
+    
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: fiber-go
+    image: fiber-go:1.0
+    ports:
+      - 3000:3000
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+    networks:
+      - fiber
+    entrypoint: ["/root/wait-for.sh", "db:3306", "--", "/root/start.sh"]
+    command: ["/root/main"]
+
+networks:
+  fiber:
+    driver: bridge
