@@ -16,9 +16,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Build Up Docker Compose
-        run: docker-compose down && docker-compose up -d --build
-
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v2
