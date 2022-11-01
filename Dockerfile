@@ -9,7 +9,8 @@ FROM alpine:latest
 
 WORKDIR /root
 COPY --from=builder /app/main .
-COPY .env .
+COPY .env.example .
+RUN mv .env.example .env
 COPY wait-for.sh .
 COPY start.sh .
 RUN chmod +x ./start.sh
