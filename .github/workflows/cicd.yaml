@@ -27,9 +27,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Extract Label and Tag
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: dcapella66/cicd
+
       - name: Build and Push images
         uses: docker/build-push-action@v3
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
