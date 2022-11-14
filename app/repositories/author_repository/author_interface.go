@@ -8,4 +8,5 @@ type AuthorRepository interface {
 	Create(author models.Author) (models.Author, error)
 	Update(author models.Author) (models.Author, error)
 	Delete(author models.Author) error
+	Count() (int64, error)
 }
