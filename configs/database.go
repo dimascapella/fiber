@@ -16,7 +16,7 @@ func SetupDatabase() *gorm.DB {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-
+	DB_ASD := os.Getenv("DB_NAME")
 	DB_NAME := os.Getenv("DB_NAME")
 	DB_HOST := os.Getenv("DB_HOST")
 	DB_PORT := os.Getenv("DB_PORT")
